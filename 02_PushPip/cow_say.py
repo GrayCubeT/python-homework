@@ -21,13 +21,16 @@ parser.add_argument("-s", action="store_true")
 parser.add_argument("-t", action="store_true")
 parser.add_argument("-w", action="store_true")
 parser.add_argument("-y", action="store_true")
+parser.add_argument("-l", action="store_true")
 
 args = parser.parse_args()
-print(args)
-preset = []
-for i in EXTRA:
-    if hasattr(args, i) and getattr(args, i):
-        preset.append(i)
-preset = "".join(preset)
 
-print(cowsay(args.message, preset=preset, eyes=args.e, tongue=args.T,width=args.W, wrap_text=args.n, cowfile=args.f))
+if args.l:
+    print(list_cows())
+else:
+    preset = []
+    for i in EXTRA:
+        if hasattr(args, i) and getattr(args, i):
+            preset.append(i)
+    preset = "".join(preset)
+    print(cowsay(args.message, preset=preset, eyes=args.e, tongue=args.T,width=args.W, wrap_text=args.n, cowfile=args.f))
